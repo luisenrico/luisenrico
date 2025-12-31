@@ -1,6 +1,6 @@
 ## Github Pages hosting personal website
 
-| interestingly, i only need HTML and CSS, and 0 frameworks to make this simple responsive website.
+| In our school we were thought about front-end, back-end, JavaScript frameworks, SEO fundamentals, Vercel, React and so on. 
 
 Github pages has its ups and down, such as its limitation - GitHub Pages is not intended for or allowed to be used as a free web-hosting service to run your online business, e-commerce site, or any other website that is primarily directed at either facilitating commercial transactions or providing commercial software as a service (SaaS). BUT one can do https://pages.cloudflare.com/ to solve this.
 
