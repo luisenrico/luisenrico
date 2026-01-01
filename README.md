@@ -1,11 +1,15 @@
-## Github Pages hosting personal website
+## Mirrors how engineers design reliable systems: fewer moving parts, fewer failure modes.
 
 | In our school we were thought about front-end, back-end, JavaScript frameworks, SEO fundamentals, Vercel, React and so on. 
 
 Github pages has its ups and down, such as its limitation - GitHub Pages is not intended for or allowed to be used as a free web-hosting service to run your online business, e-commerce site, or any other website that is primarily directed at either facilitating commercial transactions or providing commercial software as a service (SaaS). BUT one can do https://pages.cloudflare.com/ to solve this.
 
+But I kind of like it this way, because:
+1. Fast to load and easy to host
+2. Readable and modifiable without frameworks
+3. Content-first rather than UI-heav
 
-Whereas, for me i only need static hosting, i intend for this be a request and return file. not much need to process.
+
 
 
 
