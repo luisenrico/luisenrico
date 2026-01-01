@@ -1,4 +1,4 @@
-## Mirrors how engineers design reliable systems: fewer moving parts, fewer failure modes.
+## This mirrors how engineers design reliable systems: fewer moving parts, fewer failure modes.
 
 | In our school we were thought about front-end, back-end, JavaScript frameworks, SEO fundamentals, Vercel, React and so on. 
 
