@@ -36,7 +36,7 @@ a:active {
 }
 @media (min-width: 992px) {
     .container {
-        width: 1350px;
+        width: 970px;
      }
 }
 .row {
@@ -260,6 +260,7 @@ hr {
     padding-left: 0;
 
 }
+
 
 
 
