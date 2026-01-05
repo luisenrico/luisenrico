@@ -31,8 +31,8 @@ a:active {
 .container {
     margin-left: auto;
     margin-right: auto;
-    padding-left: 40px;
-    padding-right: 40px;
+    padding-left: 15px;
+    padding-right: 15px;
 }
 @media (min-width: 992px) {
     .container {
@@ -260,6 +260,7 @@ hr {
     padding-left: 0;
 
 }
+
 
 
 
