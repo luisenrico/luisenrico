@@ -261,6 +261,27 @@ hr {
 
 }
 
+.site-footer {
+    margin-top: 60px;
+    text-align: center;
+    font-size: 14px;
+    color: #bbbbbb;
+}
+
+.footer-divider {
+    margin: 40px 0 20px;
+    border-bottom: 1px solid #444;
+}
+
+.site-footer p {
+    margin: 6px 0;
+}
+
+.site-footer .powered {
+    font-size: 13px;
+    color: #999999;
+}
+
 
 
 
