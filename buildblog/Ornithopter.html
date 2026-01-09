@@ -1,1 +1,106 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Project Title – Build Log Test</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
 
+  <!-- External CSS -->
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+  <!-- Title Block -->
+  <h1>Radio-Controlled Ornithopter – First Prototype</h1>
+  <div class="date">January 2026</div>
+
+  <p class="desc">
+    This build explores the feasibility of a mechanically simple,
+    radio-controlled ornithopter focused on flapping efficiency rather
+    than sustained endurance.
+  </p>
+
+  <div class="divider"></div>
+
+  <!-- Context -->
+  <h2>1. Context and Objective</h2>
+  <p>
+    The goal of this project was to validate whether a lightweight flapping
+    mechanism could generate sufficient lift at low Reynolds numbers using
+    off-the-shelf RC components.
+  </p>
+
+  <!-- Assumptions -->
+  <h2>2. Assumptions and Constraints</h2>
+
+  <div class="note">
+    <strong>Engineering Assumption:</strong>
+    The wings are modeled as rigid flat plates with no active twist control.
+    This simplifies the mechanism but underestimates aerodynamic efficiency.
+  </div>
+
+  <ul>
+    <li>Total mass target: &lt; 250 g</li>
+    <li>Single motor, no gearbox</li>
+    <li>Indoor flight envelope</li>
+  </ul>
+
+  <!-- Build -->
+  <h2>3. Build and Implementation</h2>
+
+  <p>
+    The flapping mechanism uses a crank-slider driven directly by a brushed
+    DC motor. Wing spars are carbon rods with heat-shrink skin.
+  </p>
+
+  <div class="figure">
+    <img src="assets/mechanism.jpg" alt="Flapping mechanism">
+    <div class="caption">
+      Crank-slider mechanism prior to wing installation.
+    </div>
+  </div>
+
+  <!-- Video -->
+  <div class="video">
+    <iframe
+      src="https://www.youtube.com/embed/VIDEO_ID"
+      frameborder="0"
+      allowfullscreen>
+    </iframe>
+  </div>
+
+  <!-- Analysis -->
+  <h2>4. Analysis and Observations</h2>
+
+  <p>
+    At peak motor speed, the flapping frequency reached approximately 6 Hz.
+    Significant torsional oscillation was observed in the wing spars,
+    indicating under-designed stiffness.
+  </p>
+
+  <div class="note">
+    <strong>Key Insight:</strong>
+    Structural compliance dominated aerodynamic effects, masking any lift
+    gains from increased flapping frequency.
+  </div>
+
+  <!-- Results -->
+  <h2>5. Results</h2>
+
+  <ul>
+    <li>Short hops achieved (&lt; 1 second)</li>
+    <li>No sustained flight</li>
+    <li>Mechanism reliability acceptable</li>
+  </ul>
+
+  <!-- Lessons -->
+  <h2>6. Lessons Learned and Next Steps</h2>
+
+  <p>
+    Future iterations will prioritize wing torsional stiffness and introduce
+    passive twist via compliant joints rather than rigid spars.
+  </p>
+
+</body>
+</html>
