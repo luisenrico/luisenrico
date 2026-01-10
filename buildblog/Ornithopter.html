@@ -22,12 +22,11 @@
 <nav class="toc">
   <strong>Chapters</strong>
   <ul>
-    <li><a href="#context">Context and Objective</a></li>
     <li><a href="#assumptions">Assumptions and Constraints</a></li>
-    <li><a href="#build">Build and Implementation</a></li>
-    <li><a href="#analysis">Analysis and Observations</a></li>
-    <li><a href="#results">Results</a></li>
-    <li><a href="#lessons">Lessons Learned and Next Steps</a></li>
+    <li><a href="#build">The math</a></li>
+    <li><a href="#analysis">CAD and Simulations</a></li>
+    <li><a href="#results">Build Process</a></li>
+    <li><a href="#lessons">Conclusion</a></li>
   </ul>
 </nav>
   
@@ -60,19 +59,58 @@
 
   <!-- Assumptions -->
   <h2 id="assumptions">2. Assumptions and Constraints</h2>
-
-  <div class="note">
-    <strong>Engineering Assumption:</strong>
-    The wings are modeled as rigid flat plates with no active twist control.
-    This simplifies the mechanism but underestimates aerodynamic efficiency.
+  <p>
+    The first question that must be addressed is fundamental: how do birds actually fly? At its core, bird flight requires two things—lift to overcome gravity and thrust to overcome drag. Birds generate both primarily through the <a href="https://en.wikipedia.org/wiki/File:Flyingswallow.webm"> flapping motion </a>of their wings, which are highly specialized, cambered aerodynamic surfaces.
+  	
+  	The curved (cambered) shape of a bird’s wing produces a pressure difference between its upper and lower surfaces. As air flows around the wing, the pressure above the wing is lower than the pressure below it, resulting in an upward force—lift. However, lift is not produced by wing shape alone. The flapping motion actively accelerates air downward and backward, and by Newton’s third law, this momentum change produces an upward and forward reaction force on the bird.
+  
+  <div class="video">
+    <iframe
+      src="https://www.youtube.com/embed/lBlZM1nre5g"
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+      allowfullscreen>
+    </iframe>
   </div>
-
+   
+  <div class="note">
+    <strong>Key Insight:</strong>
+    air must be moving relative to the wing for lift to exist. Once relative airflow is established, the air passing over the top surface of the wing generally travels faster and over a longer path than the air beneath it. This velocity difference contributes to a pressure imbalance: lower pressure above the wing and higher pressure below. The rushing air beneath the wing helps sustain lift, while the pressure deficit above prevents collapse
+  </div>
+    Flapping does more than generate lift—it also produces thrust. During the downstroke, the wing acts much like an oar moving through water. By pushing air backward and downward along a diagonal path, the bird generates a forward component of force. This effect is enhanced by a carefully controlled angle of attack, where the leading edge of the wing is slightly angled downward relative to the incoming airflow. This orientation allows the wing to generate thrust while maintaining lift, overcoming aerodynamic drag.
+    In simplified terms:
   <ul>
-    <li>Total mass target: &lt; 250 g</li>
-    <li>Single motor, no gearbox</li>
-    <li>Indoor flight envelope</li>
+    <li>Downward force component → lift</li>
+    <li>Backward force component → thrust</li>
+  </ul>
+    
+    The coordination of wing motion, deformation, and angle of attack is what makes sustained forward flight possible.
+	
+	  
+    To translate biological flight into an engineering system, assumptions are necessary. These assumptions reduce design complexity, constrain the solution space, and enable first-order analytical estimates before committing to hardware.
+    
+    Flight Regime
+  <ul>
+    <li>Low-speed, low Reynolds number flight</li>
+    <li>Subsonic, Incompressible flow</li>
+    <li>Quasi-steady Aerodynamics (unsteady effects are acknowledged but approximated)</li>
   </ul>
 
+    Mission Profile
+  <ul>
+    <li>Short endurance flight</li>
+    <li>Ground-assisted launch</li>
+    <li>Operation in calm air or light wind conditions</li>
+  </ul>
+
+    Structural
+  <ul>
+    <li>Elastic wing deformation is intentional and aerodynamically beneficial</li>
+    <li>All structural components remain within elastic limits</li>
+    <li>No plastic deformation under nominal flight loads</li>
+  </ul>
+
+    While real bird flight is highly unsteady, adaptive, and nonlinear, these assumptions allow the ornithopter problem to be treated as an engineering system rather than a biological imitation exercise.
+  </p>
   <!-- Build -->
   <h2 id="build">3. Build and Implementation</h2>
 
