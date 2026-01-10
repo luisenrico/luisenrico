@@ -2,8 +2,8 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <title>Project Title – Build Log Test</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Project Title – Build Blog Ornithopter USTP Edition</title>
+  <meta name="viewport" content="width=device-width, initial-scale=0.8">
 
 
   <!-- External CSS -->
@@ -13,13 +13,11 @@
 <body>
 
   <!-- Title Block -->
-  <h1>Radio-Controlled Ornithopter – First Prototype</h1>
+  <h1> Radio-Controlled Ornithopter </h1>
   <div class="date">January 2026</div>
 
   <p class="desc">
-    This build explores the feasibility of a mechanically simple,
-    radio-controlled ornithopter focused on flapping efficiency rather
-    than sustained endurance.
+    The goal here is not merely to build an ornithopter that flies, but to understand why it flies—and how to improve it in a principled, engineering-driven manner.
   </p>
 <nav class="toc">
   <strong>Chapters</strong>
@@ -37,11 +35,27 @@
   <div class="divider"></div>
 
   <!-- Context -->
-  <h2 id="context">1. Context and Objective</h2>
+  <h2>1. Introduction</h2>
   <p>
-    The goal of this project was to validate whether a lightweight flapping
-    mechanism could generate sufficient lift at low Reynolds numbers using
-    off-the-shelf RC components.
+    An ornithopter is a flying device that mimics the flight of birds. At face value, the concept is simple; in practice, it is anything but. Unlike fixed-wing aircraft, an ornithopter generates lift and thrust through the periodic flapping of its wings, closely replicating the biomechanics observed in nature. This makes it an ideal engineering problem—deceptively straightforward in description, yet mechanically and analytically complex in execution.
+  
+  <div class="figure">
+    <img src="/assets/ornithopter.png" alt="Leonardo Da Vinci's Work">
+    <div class="caption">
+      Leonardo Da Vinci's Work
+    </div>
+  </div>
+    
+    This project serves as a practical engineering challenge that bridges theory and application. It demands an understanding of aerodynamics, kinematics, structural mechanics, and energy transfer, all working in concert. Designing an ornithopter from scratch requires reasoning from first principles rather than relying solely on empirical replication.
+    
+    It is well known that numerous ornithopter designs are readily available online. Hobbyists have refined workable configurations for decades, and public demonstrations—such as early <a href="https://www.youtube.com/watch?v=Fg_JcKSHUtQ&t=193s"> TED Talks </a>  showcasing flapping-wing flight—clearly prove that the concept works. 
+  
+  <div class="note">
+    <strong>However!</strong>
+    this blog is not about copying an existing design. Instead, it focuses on what happens under the hood: the assumptions, trade-offs, and physical constraints that govern flapping-wing flight.
+  </div>  
+    Interestingly, ornithopters remain popular among hobbyists due to their versatility in material selection and mechanical layouts. This flexibility, however, often masks the underlying complexity of the system. 
+  
   </p>
 
   <!-- Assumptions -->
