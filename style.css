@@ -1,7 +1,7 @@
 body {
     margin: 0;
     padding: 0;
-    background-color: #2a2a2a;
+    background-color: #bdbdbd;
     font-family: sans-serif;
     font-size: 18px;
     line-height: 1.8;
@@ -268,8 +268,8 @@ hr {
    ========================= */
 
 .top-nav {
-    background: linear-gradient(#2f2f2f, #1f1f1f);
-    border: 1px solid #3a3a3a;
+    background: linear-gradient(#b89b78, #a98c6a);
+    border: 1px solid #9c8263;
     border-radius: 4px;
     padding: 0;
     margin-top: 20px;
@@ -283,7 +283,7 @@ hr {
 }
 
 .top-nav li {
-    border-right: 1px solid #3a3a3a;
+    border-right: 1px solid #9c8263;
 }
 
 .top-nav li:last-child {
@@ -294,22 +294,23 @@ hr {
     display: block;
     padding: 10px 18px;
     font-size: 14px;
-    color: #cfcfcf;
+    color: #2a2a2a;
     text-decoration: none;
     background: transparent;
 }
 
 .top-nav a:hover {
-    background-color: #2a2a2a;
-    color: #ffffff;
+    background-color: #d3b792;
+    color: #1f1f1f;
     text-decoration: none; /* override global hover underline */
 }
 
 .top-nav a.active {
-    background: linear-gradient(#3a3a3a, #2a2a2a);
-    color: #ffffff;
+    background: linear-gradient(#e0c7a3, #c6a785);
+    color: #1f1f1f;
     box-shadow: inset 0 1px 0 rgba(255,255,255,0.08);
 }
+
 
 
 
