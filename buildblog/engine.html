@@ -17,17 +17,14 @@
   <div class="date">January 2026</div>
 
   <p class="desc">
-    The goal here is not merely to build an Radio-Controlled Ornithopter that flies, but to understand why it flies—and how to improve it in a principled, engineering-driven manner.
+    These engines are built mainly to show how engines work, not to produce useful power.
   </p>
 <nav class="toc">
   <strong>Chapters</strong>
   <ul>
     <li><a href="https://luisenrico.github.io/projects.html">Back</a></li>
-    <li><a href="#assumptions">Assumptions and Constraints</a></li>
-    <li><a href="#build">The math</a></li>
-    <li><a href="#analysis">CAD and Simulations</a></li>
-    <li><a href="#results">Build Process</a></li>
-    <li><a href="#lessons">Conclusion</a></li>
+    <li><a href="#design">Design Trade-offs</a></li>
+    <li><a href="#tips">Tips and Key Takeaways</a></li>
   </ul>
 </nav>
   
@@ -35,136 +32,95 @@
   <div class="divider"></div>
 
   <!-- Context -->
-  <h2>1. Introduction</h2>
+  <h2>What it is and How it works</h2>
   <p>
-    An ornithopter is a flying device that mimics the flight of birds. At face value, the concept is simple; in practice, it is anything but. Unlike fixed-wing aircraft, an ornithopter generates lift and thrust through the periodic flapping of its wings, closely replicating the biomechanics observed in nature. This makes it an ideal engineering problem—deceptively straightforward in description, yet mechanically and analytically complex in execution.
-  
-  <div class="figure">
-    <img src="/assets/ornithopter.png" alt="Leonardo Da Vinci's Work">
-    <div class="caption">
-      Leonardo Da Vinci's Work
-    </div>
-  </div>
-    
-    This project serves as a practical engineering challenge that bridges theory and application. It demands an understanding of aerodynamics, kinematics, structural mechanics, and energy transfer, all working in concert. Designing an ornithopter from scratch requires reasoning from first principles rather than relying solely on empirical replication.
-    
-    It is well known that numerous ornithopter designs are readily available online. Hobbyists have refined workable configurations for decades, and public demonstrations—such as early <a href="https://www.youtube.com/watch?v=Fg_JcKSHUtQ&t=193s"> TED Talks </a>  showcasing flapping-wing flight—clearly prove that the concept works. 
-  
-  <div class="note">
-    <strong>However!</strong>
-    this blog is not about copying an existing design. Instead, it focuses on what happens under the hood: the assumptions, trade-offs, and physical constraints that govern flapping-wing flight.
-  </div>  
-    Interestingly, ornithopters remain popular among hobbyists due to their versatility in material selection and mechanical layouts. This flexibility, however, often masks the underlying complexity of the system. 
-  
-  </p>
-
-  <!-- Assumptions -->
-  <h2 id="assumptions">2. Assumptions and Constraints</h2>
-  <p>
-    The first question that must be addressed is fundamental: how do birds actually fly? At its core, bird flight requires two things—lift to overcome gravity and thrust to overcome drag. Birds generate both primarily through the <a href="https://en.wikipedia.org/wiki/File:Flyingswallow.webm"> flapping motion </a>of their wings, which are highly specialized, cambered aerodynamic surfaces. <br><br>
-  	
-  	The curved (cambered) shape of a bird’s wing produces a pressure difference between its upper and lower surfaces. As air flows around the wing, the pressure above the wing is lower than the pressure below it, resulting in an upward force—lift. However, lift is not produced by wing shape alone. The flapping motion actively accelerates air downward and backward, and by Newton’s third law, this momentum change produces an upward and forward reaction force on the bird.<br><br>
+    A wooden air engine is a small model that turns compressed air into rotation. Wood is used so you can see how it works and it is pretty much accessible material. These engines run at low pressure and are for learning, not for power.
   
   <div class="video">
     <iframe
-      src="https://www.youtube.com/embed/lBlZM1nre5g"
+      src="https://www.youtube.com/embed/KA-dkvr_dvY"
       allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
       allowfullscreen>
     </iframe>
-  </div>
-   
-  <div class="note">
-    <strong>Key Insight:</strong>
-    air must be moving relative to the wing for lift to exist. Once relative airflow is established, the air passing over the top surface of the wing generally travels faster and over a longer path than the air beneath it. This velocity difference contributes to a pressure imbalance: lower pressure above the wing and higher pressure below. The rushing air beneath the wing helps sustain lift, while the pressure deficit above prevents collapse
-  </div>
-    Flapping does more than generate lift—it also produces thrust. During the downstroke, the wing acts much like an oar moving through water. By pushing air backward and downward along a diagonal path, the bird generates a forward component of force. This effect is enhanced by a carefully controlled angle of attack, where the leading edge of the wing is slightly angled downward relative to the incoming airflow. This orientation allows the wing to generate thrust while maintaining lift, overcoming aerodynamic drag.<br><br>
-    In simplified terms:
-  <ul>
-    <li>Downward force component → lift</li>
-    <li>Backward force component → thrust</li>
-  </ul>
+  </div>  
+  
+    A wooden model air engine is, at its core, an energy conversion device: pressure energy in compressed air is converted into mechanical work through controlled expansion against a piston. Everything else in the design exists to manage <strong>three fundamentals</strong>: pressure containment, timing, and losses.
+
+    <br><br>
     
-    The coordination of wing motion, deformation, and angle of attack is what makes sustained forward flight possible. To translate biological flight into an engineering system, assumptions are necessary. These assumptions reduce design complexity, constrain the solution space, and enable first-order analytical estimates before committing to hardware.<br><br>
+    Let's start with physics. Compressed air contains stored energy because its pressure is higher than atmospheric. When you admit that air into a cylinder, it exerts force on the piston equal to pressure times piston area. That force creates torque at the crankshaft according to the crank radius and the instantaneous angle. The flywheel exists because torque is not constant over the cycle; without stored rotational energy, the engine would stall at dead center.
+    
+    <br>
 
-    Flight Regime
-  <ul>
-    <li>Low-speed, low Reynolds number flight</li>
-    <li>Subsonic, Incompressible flow</li>
-    <li>Quasi-steady Aerodynamics (unsteady effects are acknowledged but approximated)</li>
-  </ul>
-
-    Mission Profile
-  <ul>
-    <li>Short endurance flight</li>
-    <li>Ground-assisted launch</li>
-    <li>Operation in calm air or light wind conditions</li>
-  </ul>
-
-    Structural
-  <ul>
-    <li>Elastic wing deformation is intentional and aerodynamically beneficial</li>
-    <li>All structural components remain within elastic limits</li>
-    <li>No plastic deformation under nominal flight loads</li>
-  </ul>
-
-    While real bird flight is highly unsteady, adaptive, and nonlinear, these assumptions allow the ornithopter problem to be treated as an engineering system rather than a biological imitation exercise.
-  </p>
-  <!-- Build -->
-  <h2 id="build">3. The math</h2>
-
-  <p>
-    The flapping mechanism uses a crank-slider driven directly by a coreless motor
-    Wing spars are light wooden material.
-  </p>
-
-<div class="figure">
-  <img src="/assets/orni.gif" alt="Flapping mechanism">
-  <div class="caption">
-    3D model of an ornithopter
-  </div>
-</div>
-
-<div class="video">
-  <iframe
-    src="https://www.youtube.com/embed/-S60dQb1FvU"
-    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-    allowfullscreen>
-  </iframe>
-</div>
-
-
-  <!-- Analysis -->
-  <h2 id="analysis">4. Analysis and Observations</h2>
-
-  <p>
-    At peak motor speed, the flapping frequency reached approximately 6 Hz.
-    Significant torsional oscillation was observed in the wing spars,
-    indicating under-designed stiffness.
-  </p>
+    In which it is explained here, in Full Detail and on this <a href="https://woodgears.ca/air_engine/">Website</a> as well:
+    
+    <iframe 
+        width="560" 
+        height="315" 
+        src="https://www.youtube.com/embed/KkpMrLXwsks?start=203" 
+        frameborder="0" 
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+        allowfullscreen>
+    </iframe>
 
   <div class="note">
-    <strong>Key Insight:</strong>
-    Structural compliance dominated aerodynamic effects, masking any lift
-    gains from increased flapping frequency.
+    Therefore, Wood is used for the frame, flywheel, and often the cylinder and piston, but soft sealing materials like Super Glue and Stick Glue combination are added so air doesn’t leak too badly. Most wooden air engines run at very low pressure. . .often just a hand pump or small compressor, so they’re quiet and safe.
+  </div>  
+  
+    <br>
+    Now, <strong>How it Works</strong> 
+    <ul>
+      <li>Air enters the cylinder → pushes the piston → crank converts motion to rotation → flywheel stores energy → valve switches → air exhausts → repeat.</li>
+      <li>The flywheel is crucial because piston torque isn’t constant.</li>
+    </ul>
+    <br><br>
+    Main Parts would be:
+    <ul>
+      <li>Cylinder & piston: air seal vs. friction</li>
+      <li>Crankshaft & flywheel: torque vs. startup</li>
+      <li>Air inlet/exhaust: smooth flow matters</li>
+      <li>Valves: sliding and oscillating cylinder</li>
+      <li>Cam and Camshaft</li>
+    </ul>
+  <div class="figure">
+    <img src="/assets/wood.jpg" alt="engine">
+  </div>
+  </p>
+
+  <h2 id="design">Design Trade-offs</h2>
+  <p>
+    Now we consider <strong>why we use wood</strong>. Wood is porous, anisotropic, and dimensionally unstable with humidity. That means you cannot rely on tight clearances like a metal engine. Every wooden air engine design is therefore a negotiation between leakage and friction. If you make the piston fit tight enough to seal, friction skyrockets and the engine won’t start. If you loosen it, the engine spins freely but loses pressure before useful work is done.
+
+    <br><br>
+
+    The second core issue is <strong>valving</strong>, which is really about timing and flow restriction. From first principles, the valve must open early enough to admit pressure when the crank can convert it into torque, and close early enough that expanding air still does useful work instead of escaping. In practice, wooden engines almost always accept inefficient timing because precise valve control is hard to achieve in wood.
+
+  <div class="note">
+    That’s why oscillating-cylinder engines are so popular. They sacrifice thermodynamic efficiency for mechanical simplicity. The cylinder itself rocks to alternately line up intake and exhaust ports. This causes leakage, poor cutoff, and dead zones—but it eliminates sliding valves, which are extremely sensitive to wear and swelling in wood. In other words, oscillators choose robustness over efficiency.
   </div>
 
-  <!-- Results -->
-  <h2 id="results">5. Results</h2>
+    Another under-the-hood issue is speed vs. torque. High speed requires low inertia, low friction, and fast airflow. Wood fights all three. As speed increases, air can’t get in and out fast enough through wooden ports, friction rises due to heat and swelling, and vibration becomes destructive. As a result, wooden air engines are naturally biased toward low-speed, high-visibility operation. Designers intentionally oversize flywheels and crank radii to generate usable torque at low RPM.
 
-  <ul>
-    <li>Short hops achieved (&lt; 1 second)</li>
-    <li>No sustained flight</li>
-    <li>Mechanism reliability acceptable</li>
-  </ul>
+    <br><br>
 
-  <!-- Lessons -->
-  <h2 id="lessons">6. Lessons Learned and Next Steps</h2>
+    Even the flywheel embodies a design compromise. A heavy flywheel smooths motion and masks poor valve timing, but it also increases startup inertia. Many wooden engines won’t self-start unless the flywheel is spun by hand, because static friction exceeds initial torque. Designers accept this because continuous running is more important than self-starting in a model.
 
-  <p>
-    Future iterations will prioritize wing torsional stiffness and introduce
-    passive twist via compliant joints rather than rigid spars.
+    <br>
+
+    Finally, there’s the question of pressure level. From first principles, doubling pressure doubles force. But in wood, higher pressure accelerates wear, leakage, and splitting. Most designs operate far below what even cheap compressors can provide, often under 20 psi, because above that the structure becomes the limiting factor rather than the mechanism.
+
+  
   </p>
   
+  <h2 id="tips">Tips and Key Takeaways</h2>
+
+  <p>
+
+    So the essence of a wooden model air engine is this: it is not an exercise in efficiency or power, but an exercise in managing losses gracefully. Good designs don’t try to fight wood’s weaknesses. They embrace low pressure, forgiving seals, simple timing, and heavy inertia. The engine runs not because it is optimal, but because the compromises are well balanced.
+
+  </p>
+
+
 <footer class="site-footer">
   <div class="footer-divider"></div>
 
